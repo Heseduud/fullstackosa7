@@ -30,7 +30,8 @@ blogsRouter.post('/', async (req, res) => {
             author: req.body.author,
             url: req.body.url,
             likes: req.body.likes,
-            user: user._id
+            user: user._id,
+            comments: []
         })
     } else {
         blog = new Blog({
@@ -38,7 +39,8 @@ blogsRouter.post('/', async (req, res) => {
             author: req.body.author,
             url: req.body.url,
             likes: 0,
-            user: user._id
+            user: user._id,
+            comments: []
         })
     }
 
@@ -46,6 +48,13 @@ blogsRouter.post('/', async (req, res) => {
     user.blogs = user.blogs.concat(savedBlog._id)
     await user.save()
     res.json(savedBlog.toJSON())
+})
+
+blogsRouter.post('/:id/comments', async (req, res) => {
+    const blog = await Blog.findById(req.params.id)
+    blog.comments = blog.comments.concat(req.body.comment)
+    await blog.save()
+    res.json(blog.toJSON())
 })
 
 blogsRouter.delete('/:id', async (req, res) => {

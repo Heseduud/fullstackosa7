@@ -21,13 +21,13 @@ export const setNotifWithTimeout = (notif, style, timeMS) => {
     clearTimeout(timeoutID)
 
     dispatch({
-      type: 'SET_NOTIF',
-      notif: notif
+      type: 'SET_STYLE',
+      style: style
     })
 
     dispatch({
-      type: 'SET_STYLE',
-      style: style
+      type: 'SET_NOTIF',
+      notif: notif
     })
 
     timeoutID = setTimeout(() => {

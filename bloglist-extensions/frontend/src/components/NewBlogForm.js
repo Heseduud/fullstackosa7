@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setNotifWithTimeout } from '../reducers/notificationReducer'
 import { addBlogRedux } from '../reducers/blogReducer'
+import { Form, Button } from 'react-bootstrap'
 
 const NewBlogForm = () => {
   const [newTitle, setNewTitle] = useState('')
@@ -27,41 +28,16 @@ const NewBlogForm = () => {
   }
 
   return (
-    <div className='formDiv'>
-      <h1>Add blog</h1>
-      <form onSubmit={addBlog}>
-        <div>
-          Title:
-          <input
-            id='title'
-            type="text"
-            value={newTitle}
-            name="Title"
-            onChange={({ target }) => setNewTitle(target.value)}
-          />
-        </div>
-        <div>
-          Author:
-          <input
-            id='author'
-            type="text"
-            value={newAuthor}
-            name="Author"
-            onChange={({ target }) => setNewAuthor(target.value)}
-          />
-        </div>
-        <div>
-          Url:
-          <input
-            id='url'
-            type="text"
-            value={newUrl}
-            name="Url"
-            onChange={({ target }) => setNewUrl(target.value)}
-          />
-        </div>
-        <button id="submitButton" type="submit">Create</button>
-      </form>
+    <div>
+      <h3>Add a blog</h3>
+      <Form onSubmit={addBlog}>
+        <Form.Group>
+          <Form.Control type='text' name='Title' value={newTitle} onChange={({ target }) => setNewTitle(target.value)} placeholder='Title'/>
+          <Form.Control type='text' name='Author' value={newAuthor} onChange={({ target }) => setNewAuthor(target.value)} placeholder='Author'/>
+          <Form.Control type='text' name='Url' value={newUrl} onChange={({ target }) => setNewUrl(target.value)} placeholder='Url'/>
+        </Form.Group>
+        <Button variant='success' type='submit'>Create</Button>
+      </Form>
     </div>
   )
 }

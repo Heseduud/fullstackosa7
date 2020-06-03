@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import loginService from '../services/login'
-import Notification from '../components/Notification'
 import storage from '../utils/storage'
+import { Form } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { setNotifWithTimeout } from '../reducers/notificationReducer'
 import { setUser } from '../reducers/userReducer'
@@ -30,31 +30,26 @@ const LoginForm = () => {
 
   return (
     <div>
-      <Notification/>
       <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-        username
-          <input
-            id="username"
-            type="text"
+      <Form onSubmit={handleLogin}>
+        <Form.Group>
+          <Form.Control
+            type='text'
+            name='Username'
             value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-        password
-          <input
-            id="password"
-            type="password"
+            placeholder='Username'
+            onChange={({ target }) => setUsername(target.value)}/>
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            type='password'
+            name='Password'
             value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
+            placeholder='Password'
+            onChange={({ target }) => setPassword(target.value)}/>
+        </Form.Group>
         <button id="login-button" type="submit">Login</button>
-      </form>
+      </Form>
     </div>
   )
 }
