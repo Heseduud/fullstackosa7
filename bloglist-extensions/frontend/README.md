@@ -1,2 +1,2 @@
-# fullstackosa5
-HY fullstack MOOC osa 5 tehtävärepo
+# fullstackosa7
+Osan 7 bloglist-lisätehtävien frontti, pohjana omat osa 5 vastaukset + jotain apinoitu mallivastauksista
